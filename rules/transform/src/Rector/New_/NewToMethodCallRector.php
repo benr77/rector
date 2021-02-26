@@ -109,7 +109,10 @@ CODE_SAMPLE
             $propertyName = $this->getExistingFactoryPropertyName($classNode, $newToMethodCall->getServiceObjectType());
 
             if ($propertyName === null) {
-                $propertyName = $this->classNaming->getShortName($newToMethodCall->getServiceObjectType()->getClassName());
+                $propertyName = $this->classNaming->getShortName(
+                    $newToMethodCall->getServiceObjectType()
+                        ->getClassName()
+                );
                 $propertyName = lcfirst($propertyName);
 
                 $this->addConstructorDependencyToClass(
@@ -117,7 +120,6 @@ CODE_SAMPLE
                     $newToMethodCall->getServiceObjectType(),
                     $propertyName
                 );
->>>>>>> afdd5b281... use ObjectType object instead of string types
             }
 
             $propertyFetch = new PropertyFetch(new Variable('this'), $propertyName);
